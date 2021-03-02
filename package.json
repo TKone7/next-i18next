@@ -1,11 +1,10 @@
 {
-  "name": "next-i18next",
+  "name": "@tkone7/next-i18next",
   "version": "8.0.3",
-  "repository": "git@github.com:isaachinman/next-i18next.git",
+  "repository": "git@github.com:tkone7/next-i18next.git",
   "author": "Isaac Hinman <isaac@isaachinman.com>",
   "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/isaachinman"
+    "type": "github"
   },
   "main": "dist/commonjs/index.js",
   "module": "dist/esm/index.js",
