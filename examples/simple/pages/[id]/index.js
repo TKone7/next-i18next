@@ -1,25 +1,31 @@
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useMemo } from 'react'
+import Router, { useRouter } from 'next/router'
 
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { Header } from '../components/Header'
-import { Footer } from '../components/Footer'
+import { Header } from '../../components/Header'
+import { Footer } from '../../components/Footer'
 
 const Homepage = () => {
 
-  const router = useRouter()
-  const { t } = useTranslation('common')
+  const {query} = useRouter()
+  const { t, i18n } = useTranslation('common')
+  const id = useMemo(() => query.id, [query])
+
 
   return (
     <>
       <main>
-        <Header title={t('h1')} />
+        <Header title={t('dynamic')} />
+        <p>
+          {id}
+        </p>
         <div>
           <Link
-            href='/'
-            locale={router.locale === 'en' ? 'de' : 'en'}
+            href={ `/${id}` }
+            locale={i18n.language === 'en' ? 'de' : 'en'}
           >
             <button>
               {t('change-locale')}
@@ -30,13 +36,6 @@ const Homepage = () => {
               type='button'
             >
               {t('to-second-page')}
-            </button>
-          </Link>
-          <Link href='/1234'>
-            <button
-              type='button'
-            >
-              {t('to dynamic routed page')}
             </button>
           </Link>
         </div>
@@ -51,5 +50,7 @@ export const getStaticProps = async ({ locale }) => ({
     ...await serverSideTranslations(locale, ['common', 'footer']),
   },
 })
-
+export async function getStaticPaths() {
+  return { paths: [], fallback: true }
+}
 export default Homepage

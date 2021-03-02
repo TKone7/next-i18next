@@ -1,5 +1,6 @@
 {
   "h1": "A simple example",
+  "dynamic": "This is a site with dynamic path. Current ID is:",
   "change-locale": "Change locale",
   "to-second-page": "To second page",
   "error-with-status": "A {{statusCode}} error occurred on server",
